@@ -1,4 +1,3 @@
-
 %% Solve for Mach @ Nozzle Exit
 syms Me
 eqn = (1/Me) * ((2/(params.gamma+1))*(1+Me^2*(params.gamma-1)/2))^((params.gamma+1)/(2*(params.gamma-1))) - params.AeAt;
@@ -43,7 +42,7 @@ mdot = (sln_P*params.A_t*sqrt(params.gamma)/sqrt(params.R_*params.T0_)) * ...
 ue = sqrt((2*params.gamma*params.R_*params.T0_/(params.gamma-1)) * ...
     (1-(Pe./sln_P).^((params.gamma-1)/params.gamma)));
 
-FT = double(mdot.*ue + params.A_t*params.AeAt * (Pe - 4300));
+thrust = double(mdot.*ue + params.A_t*params.AeAt * (Pe - 4300));
 
 %% Figures
 %%% Pressure/Time
@@ -56,7 +55,7 @@ grid on;
 
 %%% Thrust/Time
 figure;
-plot(tSol, FT./1000, 'LineWidth', 2);
+plot(tSol, thrust./1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 14);
 ylabel('Thrust [kN]', 'FontSize', 14);
 title('Thrust vs Time', 'FontSize', 14);
