@@ -5,25 +5,26 @@ function dXdt = RocketSystem_Cylinder(t, X, params)
     
     % Unpack the states:
     P    = X(1);
-    len = X(2);
+    len  = X(2);
     
     % Unpack parameters (params is a struct you create):
-    R_      = params.R_;
-    T0_     = params.T0_;
-    rho     = params.rho;
+    R_      = params.fuel.R;
+    T0_     = params.fuel.T0;
+    rho     = params.fuel.Density;
     rho_g   = params.rho_g;
-    a       = params.a;
-    n       = params.n;
-    A_t     = params.A_t;
-    gamma   = params.gamma;      % shr in your code
+    a       = params.fuel.TCoefficient;
+    n       = params.fuel.Stability;
+    A_t     = params.At;
+    gamma   = params.fuel.SHR;      % shr in your code
     %len     = params.len;        % length of the grain
     V_hw    = params.V_hardware; % the "dead volume" or hardware volume, if any
     
     % 1) Compute geometry:
-    Ab = pi * (params.r_max*1.5)^2;  % for an annular shape burning radially in
+    Ab = params.Ae;  % for an annular shape burning radially in
     % Example: volume grows as r_in^2 (internal radius). 
     % You might define it as below, but adapt to your geometry:
-    Vg = V_hw + pi*((params.r_max*1.5)^2)*len;
+    %Vg = V_hw + pi*(params.r_max^2)*len;
+    Vg = V_hw;
     
     % 2) ODE for dr_in/dt = a * P^n
     dlen_dt = -a * P^n;
