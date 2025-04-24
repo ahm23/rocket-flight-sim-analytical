@@ -46,9 +46,10 @@ cruiseThrust = 0.5 * rho_atm * targetSpeed^2 * Acs * CD;
 
 %%% Iterate over each fuel to test
 overshoot = false;
+results = {};
 for i = 1:length(FUELS)
     params.fuel = FUELS(i);
-    grain.lenAccel = 0.1;
+    grain.lenAccel = 1;
 
     %%% Compute lift force & coefficient needed during cruise
     cruiseLift = (m0 + (params.fuel.Density*grain.lenCruise*pi*params.r_max^2/2)) * 9.81;
@@ -61,7 +62,6 @@ for i = 1:length(FUELS)
         continue
     end
     params.At = params.Ae / params.AeAt;
-    
     %%% Optimization Loop: Attempt to achieve cruise conditions from t=0
     %%% without overpressurizing the motor.
     while true
@@ -73,9 +73,9 @@ for i = 1:length(FUELS)
         run("FlightSim.m")
         if max(dat_mach) > 3
             fprintf("\n[PASS][%s] \t Mach %.2f  @  %.2fm & ε = %.4f", params.fuel.Name, max(dat_mach), grain.lenAccel, params.AeAt);
+            results{end+1} = ResultBundle(params.fuel, tSol, sln_P, thrust, sln_m);
             break
         end
-        grain.lenAccel = grain.lenAccel + 0.05;
+        grain.lenAccel = grain.lenAccel + 0.01;
     end
 end
-

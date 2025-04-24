@@ -21,8 +21,8 @@ params.rho = 1854.55362;    % propellant density
 %fuel = RocketFuel("HTPB Paper", 1740, 2600, 1.3, 320, 0.12, 5.02*10^(-(3+6*0.12)));
 %fuel = RocketFuel("Nitrocellulose", 1550, 2300, 1.3, 280, 0.7, 10*10^(-(3+6*0.12)));
 %fuel = RocketFuel("HTPB/AP[65%]", 1854.55362, 3440, 1.3, 320, 0.12, 5.02*10^(-(3+6*0.12)));
-%fuel = RocketFuel("HTPB/AP[65%]", 1854.55362, 3440, 1.3, 320, 0.12, 5.02*10^(-(3+6*0.12)));
-fuel = RocketFuel("HTPB/AP[75%]/Fe2O3[3%]", 1854.55362, 3440, 1.25, 320, 0.323, 10.31*10^(-(3+6*0.323)));
+fuel = RocketFuel("HTPB/AP[70%]", 1854.55362, 3440, 1.25, 320, 0.098, 6.2*10^(-(3+6*0.098)));
+%fuel = RocketFuel("HTPB/AP[75%]/Fe2O3[3%]", 1854.55362, 3440, 1.25, 320, 0.323, 10.31*10^(-(3+6*0.323)));
 %fuel = RocketFuel("HTPB/AP[80%]/Fe2O3[3%]", 1854.55362, 3440, 1.25, 320, 0.52, 19.24*10^(-(3+6*0.52)));
 %%% Fuel Grain Geometry
 params.r_max = 0.127;       % Maximum radius
@@ -33,7 +33,7 @@ params.V_hardware = 0.2*pi*params.r_max^2; % extra hardware volume, if any
 
 %%% Nozzle Parameters
 params.Ae = pi*params.r_max^2;
-params.AeAt = 10.0588; %15.9072;
+params.AeAt = 22.08; %15.9072;
 params.At = params.Ae/params.AeAt;
 %params.A_t = 0.00693;       % nozzle throat area
 %fprintf('\nNozzle Throat Diameter = %.2fcm\n', 100*2*sqrt(params.A_t/pi));
@@ -50,7 +50,7 @@ Awet = Acs*2 + pi*bodyD*bodyL;   % ASSUMPTION: cylindrical shape
 %% Sequencer
 %%% Annular Grain Analysis
 grain.r_in = 0.0435;
-grain.lenAccel = 1.27;
+grain.lenAccel = 1.235;
 grain.lenCruise = 0.15;
 
 %%% 2020 Validation Test

@@ -4,7 +4,7 @@
 figure;
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,1);
-plot(tSol, dat_forceY/1000, 'LineWidth', 2);
+plot(time, dat_forceY/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Force (Y) [kN]', 'FontSize', 12);
 title('Net Force (Y)', 'FontSize', 12);
@@ -12,7 +12,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,3);
-plot(tSol, dat_thrustY/1000, 'LineWidth', 2);
+plot(time, dat_thrustY/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Thrust (Y) [kN]', 'FontSize', 12);
 title('Thrust Force on Y-Axis', 'FontSize', 12);
@@ -20,7 +20,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,5);
-plot(tSol, dat_liftY/1000, 'LineWidth', 2);
+plot(time, dat_liftY/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Lift (Y) [kN]', 'FontSize', 12);
 title('Lift Force on Y-Axis', 'FontSize', 12);
@@ -28,7 +28,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,7);
-plot(tSol, dat_dragY/1000, 'LineWidth', 2);
+plot(time, dat_dragY/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Drag (Y) [kN]', 'FontSize', 12);
 title('Drag Force on Y-Axis', 'FontSize', 12);
@@ -36,7 +36,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,2);
-plot(tSol, dat_forceX/1000, 'LineWidth', 2);
+plot(time, dat_forceX/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Force (X) [kN]', 'FontSize', 12);
 title('Net Force (X)', 'FontSize', 12);
@@ -44,7 +44,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,4);
-plot(tSol, dat_thrustX/1000, 'LineWidth', 2);
+plot(time, dat_thrustX/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Thrust (X) [kN]', 'FontSize', 12);
 title('Thrust Force on X-Axis', 'FontSize', 12);
@@ -52,7 +52,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,6);
-plot(tSol, dat_liftX/1000, 'LineWidth', 2);
+plot(time, dat_liftX/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Lift (X) [kN]', 'FontSize', 12);
 title('Lift Force on X-Axis', 'FontSize', 12);
@@ -60,7 +60,7 @@ grid on;
 
 % --- Bottom subplot: Annular Grain Length ---
 subplot(4,2,8);
-plot(tSol, dat_dragX/1000, 'LineWidth', 2);
+plot(time, dat_dragX/1000, 'LineWidth', 2);
 xlabel('Time [s]', 'FontSize', 12);
 ylabel('Drag (X) [kN]', 'FontSize', 12);
 title('Drag Force on X-Axis', 'FontSize', 12);
@@ -118,7 +118,7 @@ ax.FontSize = 12;
 title('Altitude Profile');
 xlabel('Time [s]');
 ylabel('Altitude [km]');
-ylim([21.2 21.4])
+%ylim([21.2 21.4])
 yyaxis left;
 yyaxis right;
 plot(time, dat_mach, 'r--', 'Color', 'green');

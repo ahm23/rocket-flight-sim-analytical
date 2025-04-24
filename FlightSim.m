@@ -1,6 +1,6 @@
 %function [position, velocity, mass] = rocket(angle, payload)
 % Author: Ahmed Moussa
-launchAoA = 80;
+launchAoA = 64;
 cruiseAoA = 90;
 payload = 0;
 %fprintf('\nSimulating Rocket\n [PARAMETERS] angle = %.2f, payload = %.2f\n', launchAoA, payload);
@@ -23,6 +23,8 @@ m0 = 253.8;
 theta_rad = deg2rad(launchAoA);
 
 %% Initialize datastore arrays
+%st = ceil(tSol(end));
+%time = [tSol; (st + 1 : st+199)'];
 time = tSol;
 dat_velX  = zeros(size(time));
 dat_velY  = zeros(size(time));
@@ -91,6 +93,11 @@ for i = 1:length(time)
         liftY = 0;
     end
 
+    if (i > length(dat_mass))
+        dat_mass(i) = m0;
+        thrust(i) = 0;
+    end
+
     if i + 1 > size(time)
         break;
     end
@@ -106,12 +113,12 @@ for i = 1:length(time)
     Fy = thrustY + liftY - dat_dragY(i) - dat_mass(i) * 9.81;
     %Fy = thrustY + liftY - dragY - dat_mass(i) * G * M_E / (R_E + dat_posY(i))^2;
     
-    if dat_mach(i) > 3 && i > length(tSol1)
-        finForce = -Fy;
-        Fy = 0;
-    else 
-        finForce = 0;
-    end
+    %if dat_mach(i) > 3 && i > length(tSol1)
+    %    finForce = -Fy;
+    %    Fy = 0;
+    %else 
+    %    finForce = 0;
+    %end
 
     % Acceleration components
     ax = Fx / dat_mass(i);
@@ -143,7 +150,7 @@ for i = 1:length(time)
         dat_angle(i+1) = atan2(dat_velX(i+1),dat_velY(i+1));
     else
         dat_angle(i+1) = dat_angle(i);
-        break;
+        %break;
     end
     %fprintf('T: %.3fs - %.3fs | X Accel %.4f | Y Accel %.4f | Vel %.4f | Mach %.4f | Drag %.4f | X Drag %.4f | Y Drag %.4f |\n', time(i), time(i+1), ax, ay, v, dat_mach(i), dat_drag(i), dragX, dragY);
 end
